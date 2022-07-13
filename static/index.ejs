@@ -5,9 +5,12 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Title</title>
+        <link rel="stylesheet" href="./static/style.css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <canvas id="canvas" width="500px" height="500px" style="border: 2px solid black; margin: 0"></canvas>
+        <input type="color" id="colorSelector" name="colorSelector" value="#000000">
+
         <script src="/socket.io/socket.io.js"></script>
         <script src="./static/client.js" type="application/javascript"></script>
     </body>
