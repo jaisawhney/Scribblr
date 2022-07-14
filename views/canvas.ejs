@@ -3,11 +3,18 @@
         <%- include('./partials/header') %>
     </head>
     <body>
-        <!-- TODO: Canvas save button -->
-        <canvas id="canvas" class="drawing-area" width="500px" height="500px"></canvas>
-        <input id="roomId" type="hidden" value="<%= roomId %>">
-        <input type="color" id="colorSelector" name="colorSelector" value="#000000">
-
+        <div class="container d-flex flex-column align-items-center justify-content-center">
+            <div class="canvas-area">
+                <h1>Canvas</h1>
+                <p>Share the link to draw with friends!</p>
+                <div class="my-2">
+                    <!-- TODO: Canvas save button -->
+                    <input type="color" id="colorSelector" name="colorSelector" value="#000000">
+                    <input id="roomId" type="hidden" value="<%= roomId %>">
+                </div>
+                <canvas id="canvas" class="border" width="500px" height="500px"></canvas>
+            </div>
+        </div>
         <%- include('./partials/footer') %>
         <script src="../static/client.js" type="application/javascript"></script>
     </body>

@@ -4,7 +4,6 @@ body, html {
     height: 100%;
 }
 
-.drawing-area {
-    border: 2px solid black;
-    margin: 50px;
+.container {
+    height: 100%;
 }

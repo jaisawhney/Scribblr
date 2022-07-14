@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static('static'));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {rooms: rooms});
 });
 
 app.get('/canvas/:roomId', (req, res) => {
