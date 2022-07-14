@@ -6,21 +6,43 @@
         <div class="container d-flex flex-column align-items-center justify-content-center">
             <h1 class="text-center">Scribblr</h1>
             <p class="text-muted">An online collaborative drawing app</p>
-            <div class="cards">
-                <!-- TODO: List available rooms -->
+            <div class="row w-50 justify-content-center">
+                <% for (room of rooms) { %>
+                    <div class="col-lg-4 col-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <a href="./canvas/<%= room %>" class="btn btn-sm btn-primary w-100">Join
+                                    room <%= room %></a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
             </div>
-            <form id="createRoom">
-                <button type="submit" class="btn btn-primary">Create Room</button>
-            </form>
-            <!--<nav>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>-->
+            <div>
+                <% if (pageCount !== 0) { %>
+                <nav class="my-2 d-inline-block align-middle">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="/?page=<%= Math.max(1, parseInt(currentPage) - 1) %>">Previous</a>
+                        </li>
+
+                        <% for (let i = 0; i < pageCount; i++) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="/?page=<%= i + 1 %>"><%= i + 1 %></a>
+                            </li>
+                        <% } %>
+                        <li class="page-item">
+                            <a class="page-link" href="/?page=<%= Math.min(parseInt(currentPage) + 1, pageCount) %>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                <% } %>
+
+                <form id="createRoom" class="d-inline-block align-middle">
+                    <button type="submit" class="btn btn-md btn-primary">Create Room</button>
+                </form>
+            </div>
         </div>
 
         <%- include('./partials/footer') %>

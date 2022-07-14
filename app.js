@@ -9,32 +9,37 @@ const {nanoid} = require('nanoid');
 
 const rooms = new Set();
 
-//app.set('views', 'static');
 app.set('view engine', 'ejs');
-
 app.use('/static', express.static('static'));
 
 app.get('/', (req, res) => {
-    res.render('index', {rooms: rooms});
+    const page = req.query.page || 1
+    res.render('index', {
+        rooms: Array.from(rooms).slice((page - 1) * 3, page * 3),
+        pageCount: Math.ceil(rooms.size / 3),
+        currentPage: page
+    });
 });
 
 app.get('/canvas/:roomId', (req, res) => {
-    //console.log(io.sockets.adapter.rooms);
     if (!rooms.has(req.params.roomId)) return res.send("That room does not exist!");
     res.render('canvas', {roomId: req.params.roomId});
 });
 
 io.on('connection', (socket) => {
+    /* User creates a room */
     socket.on('ROOM_CREATE', callback => {
         const roomId = nanoid(10);
         rooms.add(roomId);
         callback(roomId);
     });
 
+    /* User joins a room */
     socket.on('ROOM_JOIN', (room) => {
         socket.join(room);
     });
 
+    /* Handle user drawing */
     socket.on('USER_DRAW', (obj) => {
         const currentRoom = [...socket.rooms].find(room => room !== socket.id);
         socket.to(currentRoom).emit('USER_DRAW', obj);
