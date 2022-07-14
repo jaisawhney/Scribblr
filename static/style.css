@@ -3,3 +3,8 @@ body, html {
     padding: 0;
     height: 100%;
 }
+
+.drawing-area {
+    border: 2px solid black;
+    margin: 50px;
+}

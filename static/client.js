@@ -4,14 +4,17 @@ const canvas = document.getElementById('canvas');
 const colorSelector = document.getElementById('colorSelector');
 const ctx = canvas.getContext('2d');
 
-let posX = posY = 0
+const roomId = document.getElementById('roomId').value;
+socket.emit('ROOM_JOIN', roomId);
+
+let posX = posY = 0;
 
 canvas.addEventListener('mousedown', updateCoordinates);
 canvas.addEventListener('mousemove', draw);
 
 function updateCoordinates(e) {
-    posX = e.clientX
-    posY = e.clientY
+    posX = e.clientX - canvas.offsetLeft
+    posY = e.clientY - canvas.offsetTop
 }
 
 function draw(e) {
@@ -20,8 +23,7 @@ function draw(e) {
     ctx.beginPath();
     ctx.moveTo(posX, posY);
 
-    const lastPosX = posX
-    const lastPosY = posY;
+    const lastPosX = posX, lastPosY = posY;
 
     updateCoordinates(e);
     ctx.lineTo(posX, posY);
