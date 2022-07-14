@@ -1,0 +1,14 @@
+<html lang="en">
+    <head>
+        <%- include('./partials/header') %>
+    </head>
+    <body>
+        <!-- TODO: Canvas save button -->
+        <canvas id="canvas" class="drawing-area" width="500px" height="500px"></canvas>
+        <input id="roomId" type="hidden" value="<%= roomId %>">
+        <input type="color" id="colorSelector" name="colorSelector" value="#000000">
+
+        <%- include('./partials/footer') %>
+        <script src="../static/client.js" type="application/javascript"></script>
+    </body>
+</html>
