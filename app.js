@@ -44,6 +44,13 @@ io.on('connection', (socket) => {
         const currentRoom = [...socket.rooms].find(room => room !== socket.id);
         socket.to(currentRoom).emit('USER_DRAW', obj);
     });
+
+    /* Remove empty rooms on client disconnect */
+    socket.on('disconnecting', () => {
+        const currentRoom = [...socket.rooms].find(room => room !== socket.id);
+        const roomSize = io.sockets.adapter.rooms.get(currentRoom)?.size || 0;
+        if (roomSize <= 1) rooms.delete(currentRoom);
+    });
 });
 
 const port = process.env.PORT || 3000;
