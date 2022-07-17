@@ -1,5 +1,5 @@
 # Scribblr
-An online collaborative drawing app.
+An online collaborative drawing app written with Socket.io and Express.
 
 [Demo](https://js-scribblr.herokuapp.com/)
 
@@ -11,3 +11,7 @@ WebSockets are used to sync drawings in real-time. Users can create rooms and se
 2. To install dependencies run `npm i`
 3. Run `npm start` to start the app
 4. To use the app navigate to localhost:3000
+
+## Mockups
+![](media/mockup-canvas.png)
+![](media/mockup-index.png)
